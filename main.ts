@@ -276,4 +276,4 @@ function typeStock(amountStock:number,stock:HTMLSpanElement){
         stock.setAttribute('class','outofstock');
         stock.innerText = "OUTOFSTOCK"; 
     }
-}
+}    

@@ -11,7 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="modal_style.css">
     <script defer src="main.js"></script>
+    <script defer src="modal.js"></script>
 </head>
 
 <body>
@@ -36,24 +38,27 @@
             </div>
             <div class="orderlist-list">
                 <div class="list-articles" id="listArticles">
-                    <!-- <div class="article" id="article">
-                        <div class="article-image" id="articleImage">
-                            <img src="https://primefaces.org/cdn/primeng/images/demo/product/bamboo-watch.jpg">
-                        </div>
-                        <div class="article-description" id="articleDescription">
-                            <span class="article-name" id="articleName">Bamboo Watch</span>
-                            <i class="bi bi-tag"></i>
-                            <span class="article-category" id="articleCategory">Accessories</span>
-                        </div>
-                        <div class="article-price" id="articlePrice">
-                            <span class="price-badge" id="priceBadge">$65</span>
-                            <span class="instock" id="articleInstock">INSTOCK</span>
-                        </div>
-                    </div> -->
+                   
                 </div>
             </div>
         </div>
-
+    </div>
+    <div class="modal-container">
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <h1>Titulo </h1>
+            </div>
+            <div class="modal-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur consequatur culpa eius ex illum
+                    libero magnam non quasi quod ratione, suscipit temporibus. Quibusdam, sunt, temporibus. Aspernatur
+                    est maxime quos voluptatibus.</p>
+            </div>
+            <div class="modal-footer text-right">
+                <button id="btnClose" class="btn btn-secondary">Cancelar</button>
+                <button class="btn btn-primary btn-small ml-1">Aceptar</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
