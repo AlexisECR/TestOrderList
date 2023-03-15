@@ -173,20 +173,15 @@ var productDummy = {
     ]
 };
 var Article = /** @class */ (function () {
-    function Article(productos) {
-        var articles = productos.map(function (producto) { return ({
-            title: producto.title,
-            price: producto.price,
-            stock: producto.stock,
-            category: producto.category,
-            images: producto.images
-        }); });
-        this.title = articles[0].title;
-        this.price = articles[0].price;
-        this.stock = articles[0].stock;
-        this.category = articles[0].category;
-        this.images = articles[0].images;
+    function Article() {
     }
+    // constructor(title: string, price: number, stock: number, category: string, images: string[],) {
+    //     this.title = title;
+    //     this.price = price;
+    //     this.stock = stock;
+    //     this.category = category;
+    //     this.images = images;
+    // }
     Article.prototype.createArticle = function () {
         var article = document.createElement("div");
         article.setAttribute("class", "article");
@@ -248,3 +243,20 @@ var Article = /** @class */ (function () {
     };
     return Article;
 }());
+var instance = new Article();
+var productosConvertido = productDummy.products.map(function (producto) {
+    return {
+        title: producto.title,
+        price: producto.price,
+        stock: producto.stock,
+        category: producto.category,
+        images: producto.images
+    };
+});
+productosConvertido.forEach(function (producto) {
+    var newArticle = instance.createArticle();
+    instance.createDivImage(producto.images[0], newArticle);
+    instance.createArticleDescription(producto.title, producto.category, newArticle);
+    instance.createArticlePrice(producto.price, producto.stock, newArticle);
+    instance.addArticle(newArticle);
+});

@@ -187,30 +187,20 @@ class Article {
     stock: number;
     category: string;
     images: string[];
-
-    constructor(productos: Producto[]) {
-        const articles = productos.map(producto => ({
-            title: producto.title,
-            price: producto.price,
-            stock: producto.stock,
-            category: producto.category,
-            images: producto.images
-        }));
-        this.title = articles[0].title;
-        this.price = articles[0].price;
-        this.stock = articles[0].stock;
-        this.category = articles[0].category;
-        this.images = articles[0].images;
-    }
-
-
-    private createArticle(): HTMLDivElement {
+    // constructor(title: string, price: number, stock: number, category: string, images: string[],) {
+    //     this.title = title;
+    //     this.price = price;
+    //     this.stock = stock;
+    //     this.category = category;
+    //     this.images = images;
+    // }
+    public createArticle(): HTMLDivElement {
         let article: HTMLDivElement = document.createElement("div");
         article.setAttribute("class", "article");
         return article;
     }
 
-    private createDivImage(img: string, article: HTMLDivElement): void {
+    public createDivImage(img: string, article: HTMLDivElement):void {
         let articleImage: HTMLDivElement = document.createElement("div");
         articleImage.setAttribute("class", "article-image");
 
@@ -221,11 +211,7 @@ class Article {
         article.appendChild(articleImage);
     }
 
-    private createArticleDescription(
-        title: string,
-        category: string,
-        article: HTMLDivElement
-    ): void {
+    public createArticleDescription(title: string, category:string, article:HTMLDivElement):void {
         let articleDescription: HTMLDivElement = document.createElement("div");
         articleDescription.setAttribute("class", "article-description");
 
@@ -246,11 +232,7 @@ class Article {
         article.appendChild(articleDescription);
     }
 
-    private createArticlePrice(
-        price: number,
-        existenceStock: number,
-        article: HTMLDivElement
-    ): void {
+    public createArticlePrice(price:number, existenceStock:number, article:HTMLDivElement):void {
         let articlePrice: HTMLDivElement = document.createElement("div");
         articlePrice.setAttribute("class", "article-price");
 
@@ -266,7 +248,7 @@ class Article {
         article.appendChild(articlePrice);
     }
 
-    private typeStock(amountStock: number, stock: HTMLSpanElement) {
+    private typeStock(amountStock: number, stock: HTMLSpanElement):void {
         if (amountStock >= 50) {
             stock.setAttribute("class", "instock");
             stock.innerText = "INSTOCK";
@@ -279,7 +261,26 @@ class Article {
         }
     }
 
-    public addArticle(article: HTMLDivElement) {
+    public addArticle(article: HTMLDivElement):void {
         document.getElementById("listArticles")?.appendChild(article);
     }
 }
+
+const instance = new Article();
+const productosConvertido = productDummy.products.map((producto) => {
+    return {
+        title: producto.title,
+        price: producto.price,
+        stock: producto.stock,
+        category: producto.category,
+        images: producto.images
+    }
+})
+
+productosConvertido.forEach((producto: Producto) => {
+    const newArticle = instance.createArticle();
+    instance.createDivImage(producto.images[0], newArticle);
+    instance.createArticleDescription(producto.title,producto.category, newArticle);
+    instance.createArticlePrice(producto.price, producto.stock, newArticle);
+    instance.addArticle(newArticle);
+});
